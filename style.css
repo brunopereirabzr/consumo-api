@@ -2,72 +2,47 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: #00dddd;
-}
-
+    background-color: #00dddd;}
 main{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
+    flex-direction: column;}
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin-bottom: 20px;
     background-color: rgba(0, 0, 0, 15%);
     border-radius: 15px;
-    
     width: 500px;
-    height: 500px;
-}
-
+    height: 500px;}
 .cadastro-filho{
-    font-size: 25px;
-}
-
+    font-size: 25px;}
 input{
     width: 250px;
     height: 30px;
-    border-radius: 5px;
-}
-
+    border-radius: 5px;}
 label{
     display: block;
-    font-size: 20px;
-}
-
+    font-size: 20px;}
 button{
     margin-top: 10px;
     height: 35px;
     width: 258px;
     border-radius: 5px;
     background-color: #4fd8d8;
-    font-size: 15px;
-
-}
-
-/*Professor é aqui*/
-
+    font-size: 15px;}
+.lista-usar{
+    display: flex;
+    justify-content: center;}
 .user-list {
-    margin-top: 20px;
-}
-
+    margin-top: 20px;}
 table {
     width: 100%;
-    border-collapse: collapse;
-}
-
+    border-collapse: collapse;}
 table, th, td {
-    border: 1px solid black;
-}
-
+    border: 1px solid black;}
 th, td {
     padding: 10px;
-    text-align: left;
-}
-
-
+    text-align: left;}
