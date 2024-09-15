@@ -2,10 +2,21 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #DDA0DD;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .form-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+
     margin-bottom: 20px;
     background-color: rgba(0, 0, 0, 15%);
     border-radius: 15px;
@@ -14,18 +25,26 @@ body {
     height: 500px;
 }
 
-.label-nome{
-    padding-top: 50px;
-}
-
-.cadastro-h3{
-    padding-top: 20px;
-}
-
 .cadastro-filho{
-    margin: auto;
+    font-size: 25px;
 }
 
+input{
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+label{
+    display: block;
+    font-size: 20px;
+}
+
+button{
+    height: 35px;
+    width: 255px;
+    border-radius: 5px;
+}
 
 /*Professor é aqui*/
 
@@ -47,7 +66,4 @@ th, td {
     text-align: left;
 }
 
-.button {
-    margin-top: 10px;
-}
 
