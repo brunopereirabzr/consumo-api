@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Usuários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .user-list {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gerenciamento de Usuários</h1>
+
+    <!-- Formulário para adicionar/editar usuário -->
+    <div class="form-container">
+        <h3>Adicionar/Editar Usuário</h3>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome"><br>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha"><br>
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipo"><br>
+        <input type="hidden" id="userId"><!-- Usado para edição -->
+        <button onclick="salvarUsuario()">Salvar</button>
+    </div>
+
+    <!-- Lista de usuários -->
+    <div class="user-list">
+        <h3>Lista de Usuários</h3>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const apiUrl = 'http://localhost:8080/usuarios';
+
+        // Função para listar usuários
+        function listarUsuarios() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(usuarios => {
+                    const userTableBody = document.querySelector('#userTable tbody');
+                    userTableBody.innerHTML = ''; // Limpa a tabela
+                    usuarios.forEach(usuario => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${usuario.id}</td>
+                            <td>${usuario.nome}</td>
+                            <td>${usuario.tipo}</td>
+                            <td>
+                                <button onclick="editarUsuario(${usuario.id})">Editar</button>
+                                <button onclick="deletarUsuario(${usuario.id})">Excluir</button>
+                            </td>
+                        `;
+                        userTableBody.appendChild(row);
+                    });
+                });
+        }
+
+        // Função para salvar ou atualizar um usuário
+        function salvarUsuario() {
+            const nome = document.getElementById('nome').value;
+            const senha = document.getElementById('senha').value;
+            const tipo = document.getElementById('tipo').value;
+            const userId = document.getElementById('userId').value;
+
+            const usuario = { nome, senha, tipo };
+
+            const method = userId ? 'PUT' : 'POST';
+            const url = userId ? `${apiUrl}/${userId}` : apiUrl;
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(usuario),
+            })
+            .then(response => response.json())
+            .then(() => {
+                listarUsuarios(); // Atualiza a lista de usuários
+                limparFormulario();
+            });
+        }
+
+        // Função para editar um usuário
+        function editarUsuario(id) {
+            fetch(`${apiUrl}/${id}`, {
+                method: 'PUT',
+            })
+            .then(response => response.json())
+            .then(usuario => {
+                document.getElementById('nome').value = usuario.nome;
+                document.getElementById('senha').value = usuario.senha;
+                document.getElementById('tipo').value = usuario.tipo;
+                document.getElementById('userId').value = usuario.id;
+            });
+        }
+
+        // Função para deletar um usuário
+        function deletarUsuario(id) {
+            fetch(`${apiUrl}/${id}`, {
+                method: 'DELETE',
+            })
+            .then(() => listarUsuarios());
+        }
+
+        // Função para limpar o formulário após salvar ou editar
+        function limparFormulario() {
+            document.getElementById('nome').value = '';
+            document.getElementById('senha').value = '';
+            document.getElementById('tipo').value = '';
+            document.getElementById('userId').value = '';
+        }
+
+        // Chama a função para listar usuários quando a página carrega
+        window.onload = listarUsuarios;
+    </script>
+
+</body>
+</html>
