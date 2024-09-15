@@ -3,73 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Gerenciamento de Usuários</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        .form-container {
-            margin-bottom: 20px;
-        }
-
-        .user-list {
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        .button {
-            margin-top: 10px;
-        }
-    </style>
+    
 </head>
 <body>
 
     <h1>Gerenciamento de Usuários</h1>
+    <main>
+        <!-- Formulário para adicionar/editar usuário -->
+        <div class="form-container">
+            <h3>Adicionar/Editar Usuário</h3>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome"><br>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha"><br>
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo"><br>
+            <input type="hidden" id="userId"><!-- Usado para edição -->
+            <button onclick="salvarUsuario()">Salvar</button>
+        </div>
 
-    <!-- Formulário para adicionar/editar usuário -->
-    <div class="form-container">
-        <h3>Adicionar/Editar Usuário</h3>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome"><br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha"><br>
-        <label for="tipo">Tipo:</label>
-        <input type="text" id="tipo"><br>
-        <input type="hidden" id="userId"><!-- Usado para edição -->
-        <button onclick="salvarUsuario()">Salvar</button>
-    </div>
-
-    <!-- Lista de usuários -->
-    <div class="user-list">
-        <h3>Lista de Usuários</h3>
-        <table id="userTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+        <!-- Lista de usuários -->
+        <div class="user-list">
+            <h3>Lista de Usuários</h3>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <script>
         const apiUrl = 'http://localhost:8080/usuarios';
