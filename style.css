@@ -1,32 +1,35 @@
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
 
-        .form-container {
-            margin-bottom: 20px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
 
-        .user-list {
-            margin-top: 20px;
-        }
+.form-container {
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 15%);
+    border-radius: 15px;
+}
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.user-list {
+    margin-top: 20px;
+}
 
-        table, th, td {
-            border: 1px solid black;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+table, th, td {
+    border: 1px solid black;
+}
 
-        .button {
-            margin-top: 10px;
-        }
-    </style>
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.button {
+    margin-top: 10px;
+}
+
